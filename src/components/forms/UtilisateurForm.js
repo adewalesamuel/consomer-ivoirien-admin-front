@@ -80,10 +80,19 @@ export function UtilisateurForm(props) {
 				<div className='col-12'>
                     <div className='form-group'>
                         <label htmlFor='status'>Status</label>
-                        <input className='form-control' type='text' id='status' name='status' 
+                        <select className="form-control" name='status' id="status" value={props.useUtilisateur.status ?? ''} 
+                        onChange={e => props.useUtilisateur.setStatus(e.target.value)}                      disabled={props.isDisabled} >
+                            <option hidden>Selectionnez le status</option>
+                            {props.useUtilisateur.statuses.map((status, index) => {
+                                return (
+                                    <option value={status} key={index}>{status}</option>
+                                )
+                            })}
+                        </select>
+                        {/* <input className='form-control' type='text' id='status' name='status' 
                         placeholder='Status' value={props.useUtilisateur.status ?? ''}
                         disabled={props.isDisabled} 
-                        onChange={ e => props.useUtilisateur.setStatus(e.target.value) ?? null} required/>
+                        onChange={ e => props.useUtilisateur.setStatus(e.target.value) ?? null} required/> */}
                     </div>
                 </div>
 				

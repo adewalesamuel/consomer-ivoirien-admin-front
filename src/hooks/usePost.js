@@ -5,22 +5,36 @@ export const usePost = () => {
     const [id, setId] = useState('');
 	const [titre, setTitre] = useState('');
 	const [description, setDescription] = useState('');
+	const [ville, setVille] = useState('');
 	const [attributs, setAttributs] = useState('');
 	const [prix, setPrix] = useState('');
 	const [img_urls, setImg_urls] = useState('');
 	const [categorie_id, setCategorie_id] = useState('');
 	const [utilisateur_id, setUtilisateur_id] = useState('');
 	const [promotion_end_date, setPromotion_end_date] = useState('');
+
+	const villes = ['Abdijan', 'Bouake', 'Yamoussoukro'];
 	
 
     const [errors, setErrors] = useState([]);
     const [isDisabled, setIsDisabled] = useState(false);
+
+	const setVilleAttributs = ville => {
+		setVille(ville);
+		
+		let attributsObj = attributs ? JSON.parse(attributs) : {};	
+		attributsObj['ville'] = ville;
+		
+		setAttributs(JSON.stringify(attributsObj));
+	}
 
     const getPost = (postId, signal) => {        
         return Services.PostService.getById(postId, signal)
         .then(response => {
             fillPost(response.post);
             setIsDisabled(false);
+
+			return response;
         });
     }
 
@@ -61,13 +75,14 @@ export const usePost = () => {
         setId(post.id);
         setTitre(post.titre ?? '');
 		setDescription(post.description ?? '');
-		setAttributs(post.attributs ?? '');
 		setPrix(post.prix ?? '');
 		setImg_urls(post.img_urls ?? '');
 		setCategorie_id(post.categorie_id ?? '');
 		setUtilisateur_id(post.utilisateur_id ?? '');
 		setPromotion_end_date(post.promotion_end_date ?? '');
-		
+
+		setVille(JSON.parse(post.attributs) ? JSON.parse(post.attributs).ville : '');
+		setAttributs(post.attributs ?? '');
     }
     const emptyPost = () => {
         setId('');
@@ -89,15 +104,18 @@ export const usePost = () => {
 		attributs,
 		prix,
 		img_urls,
+		ville,
 		categorie_id,
 		utilisateur_id,
 		promotion_end_date,
+		villes,
 		
         errors,
         isDisabled,
         setTitre,
 		setDescription,
 		setAttributs,
+		setVilleAttributs,
 		setPrix,
 		setImg_urls,
 		setCategorie_id,

@@ -9,6 +9,8 @@ export const useAdministrateur = () => {
 	const [role, setRole] = useState('');
 	const [img_url, setImg_url] = useState('');
 	const [img, setImg] = useState('');
+
+    const roles = ['super-admin', 'editeur'];
 	
 
     const [errors, setErrors] = useState([]);
@@ -76,6 +78,7 @@ export const useAdministrateur = () => {
 		role,
         img,
 		img_url,
+        roles,
 		
         errors,
         isDisabled,

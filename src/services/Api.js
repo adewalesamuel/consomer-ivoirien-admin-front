@@ -163,4 +163,5 @@ export const Api = {
     put,
     erase,
     postFormData,
+    URL,
 }

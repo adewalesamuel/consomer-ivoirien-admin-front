@@ -35,10 +35,17 @@ export function AdministrateurForm(props) {
 				<div className='col-12'>
                     <div className='form-group'>
                         <label htmlFor='role'>Role</label>
-                        <input className='form-control' type='text' id='role' name='role' 
-                        placeholder='Role' value={props.useAdministrateur.role ?? ''}
+                        <select className='select2 form-control' id='role' name='role' 
+                        value={props.useAdministrateur.role ?? ''}
                         disabled={props.isDisabled} 
-                        onChange={ e => props.useAdministrateur.setRole(e.target.value) ?? null} required/>
+                        onChange={ e => props.useAdministrateur.setRole(e.target.value) ?? null} required>
+                            <option hidden>Selectionnez un role</option>
+                            {
+                                props.useAdministrateur.roles.map(item => {
+                                    return <option key={Math.random()} value={item ?? ''}>{item}</option>
+                                })
+                            } 
+                        </select>
                     </div>
                 </div>
 				<div className='col-12'>

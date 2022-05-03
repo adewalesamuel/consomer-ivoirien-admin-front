@@ -44,6 +44,16 @@ export function PostCreateView(props) {
     
   }
 
+  const handleImageDeleteClick = (event, img_url) => {
+    event.preventDefault();
+    
+    let img_urls = usePost.img_urls ? JSON.parse(usePost.img_urls) : [];
+
+    img_urls.splice(img_urls.indexOf(img_url), 1);
+    usePost.setImg_urls(JSON.stringify(img_urls));
+  }
+
+
     useEffect(() => {
       Services.UtilisateurService.getAll(abortController.signal)
       .then(response => setUtilisateurs(response.utilisateurs));
@@ -64,7 +74,8 @@ export function PostCreateView(props) {
                     <div className="card-body">
                         <Components.PostForm usePost={usePost} isDisabled={isDisabled} 
                         utilisateurs={utilisateurs} categories={categories} 
-                        handleFormSubmit={handleFormSubmit} handleFileChange={handleFileChange}/>
+                        handleFormSubmit={handleFormSubmit} handleFileChange={handleFileChange}
+                        handleImageDeleteClick={handleImageDeleteClick}/>
                     </div>
                 </div>
               </div>

@@ -12,6 +12,7 @@ export const useUtilisateur = () => {
 	const [telephone, setTelephone] = useState('');
 	const [img_url, setImg_url] = useState('');
 	const [status, setStatus] = useState('');
+	const statuses = ['en-attente', 'valide', 'suspendu'];
 	
 
     const [errors, setErrors] = useState([]);
@@ -98,6 +99,7 @@ export const useUtilisateur = () => {
 		telephone,
 		img_url,
 		status,
+		statuses,
 		
         errors,
         isDisabled,

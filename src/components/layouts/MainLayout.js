@@ -1,18 +1,15 @@
-import {Route, Routes, useNavigate} from 'react-router-dom';
-import { useEffect } from "react";
+import {Route, Routes} from 'react-router-dom';
 
 import { Components } from "..";
-import { Utils } from "../../utils";
 import { Views } from '../../views';
 
 export function MainLayout(props) {
     window.document.body.className = "";
-    // const navigate = useNavigate();
-    const isLoggedIn = Utils.Auth.isLoggedIn();
+    // const isLoggedIn = Utils.Auth.isLoggedIn();
 
     // useEffect(() => {
     //     if (!isLoggedIn) navigate('/auth');
-    // });
+    // }, []);
 
     // if (!isLoggedIn) return null;
 
@@ -25,6 +22,7 @@ export function MainLayout(props) {
                     <div className="page-content">
                         <div className="container-fluid">
                             <Routes>
+                                <Route exact path='administrateurs/:id/modifier' element={<Views.AdministrateurEditView />} />
                                 <Route exact path='administrateurs/creer' element={<Views.AdministrateurCreateView />} />
                                 <Route exact path='administrateurs' element={<Views.AdministrateurListView />} />
                                 <Route exact path='categories/creer' element={<Views.CategorieCreateView />} />
@@ -32,6 +30,7 @@ export function MainLayout(props) {
                                 <Route exact path='utilisateurs/:id/modifier' element={<Views.UtilisateurEditView />} />
                                 <Route exact path='utilisateurs/creer' element={<Views.UtilisateurCreateView />} />
                                 <Route exact path='utilisateurs' element={<Views.UtilisateurListView />} />
+                                <Route exact path='posts/:id/modifier' element={<Views.PostEditView />} />
                                 <Route exact path='posts/creer' element={<Views.PostCreateView />} />
                                 <Route exact path='posts' element={<Views.PostListView />} />
                                 <Route exact path='souscriptions/creer' element={<Views.SouscriptionCreateView />} />

@@ -10,6 +10,8 @@ export const useSouscriptionUtilisateur = () => {
 	const [quantite, setQuantite] = useState('');
 	const [status, setStatus] = useState('');
 	const [mode_paiement, setMode_paiement] = useState('');
+
+    const statuses = ['en-attente', 'annule', 'paye'];
 	
 
     const [errors, setErrors] = useState([]);
@@ -86,6 +88,7 @@ export const useSouscriptionUtilisateur = () => {
 		quantite,
 		status,
 		mode_paiement,
+        statuses,
 		
         errors,
         isDisabled,

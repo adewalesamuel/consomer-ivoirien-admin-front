@@ -7,7 +7,7 @@ export const useCategorie = () => {
 	const [slug, setSlug] = useState('');
 	const [description, setDescription] = useState('');
 	const [img_url, setImg_url] = useState('');
-	
+    const [img, setImg] = useState('');
 
     const [errors, setErrors] = useState([]);
     const [isDisabled, setIsDisabled] = useState(false);
@@ -21,26 +21,24 @@ export const useCategorie = () => {
     }
 
     const createCategorie = signal => {
-        const payload = {
-            nom,
-		slug,
-		description,
-		img_url,
-		
-        };
+        const formData = new FormData();
 
-        return Services.CategorieService.create(JSON.stringify(payload), signal);
+        formData.append("nom", nom);
+        formData.append("slug", slug);
+        formData.append("description", description);
+        formData.append("img", img);
+
+        return Services.CategorieService.create(formData, signal);
     }
     const updateCategorie = (categorieId, signal) => {
-        const payload = {
-            nom,
-		slug,
-		description,
-		img_url,
-		
-        };
+        const formData = new FormData();
 
-        return Services.CategorieService.update(categorieId, JSON.stringify(payload), signal);
+        formData.append("nom", nom);
+        formData.append("slug", slug);
+        formData.append("description", description);
+        formData.append("img", img);
+
+        return Services.CategorieService.update(categorieId, formData, signal);
     }
     const deleteCategorie = (categorieId, signal) => {
         return Services.CategorieService.destroy(categorieId, signal);
@@ -59,6 +57,7 @@ export const useCategorie = () => {
 		setSlug('');
 		setDescription('');
 		setImg_url('');
+        setImg('');
 		
     }
 
@@ -68,6 +67,7 @@ export const useCategorie = () => {
 		slug,
 		description,
 		img_url,
+        img,
 		
         errors,
         isDisabled,
@@ -75,6 +75,7 @@ export const useCategorie = () => {
 		setSlug,
 		setDescription,
 		setImg_url,
+        setImg,
 		
         setId,
         setErrors,

@@ -25,6 +25,7 @@ export function MainLayout(props) {
                                 <Route exact path='administrateurs/:id/modifier' element={<Views.AdministrateurEditView />} />
                                 <Route exact path='administrateurs/creer' element={<Views.AdministrateurCreateView />} />
                                 <Route exact path='administrateurs' element={<Views.AdministrateurListView />} />
+                                <Route exact path='categories/:id/modifier' element={<Views.CategorieEditView />} />
                                 <Route exact path='categories/creer' element={<Views.CategorieCreateView />} />
                                 <Route exact path='categories' element={<Views.CategorieListView />} />
                                 <Route exact path='utilisateurs/:id/modifier' element={<Views.UtilisateurEditView />} />

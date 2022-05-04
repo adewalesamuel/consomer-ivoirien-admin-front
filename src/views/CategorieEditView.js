@@ -4,11 +4,11 @@ import {Hooks} from '../hooks';
 import { useNavigate, useParams } from "react-router-dom";
 
 
-export function UtilisateurEditView(props) {
+export function CategorieEditView(props) {
   const abortController = new AbortController();
-  const useUtilisateur = Hooks.useUtilisateur();
+  const useCategorie = Hooks.useCategorie();
   const navigate = useNavigate();
-  const utilisateurId = useParams().id;
+  const categorieId = useParams().id;
   
   const [isDisabled, setIsDisabled] = useState(false);
   
@@ -16,10 +16,10 @@ export function UtilisateurEditView(props) {
     event.preventDefault();
     
       setIsDisabled(true);
-      useUtilisateur.updateUtilisateur(utilisateurId, abortController.signal)
+      useCategorie.updateCategorie(categorieId, abortController.signal)
       .then(() => {
         setIsDisabled(false);
-        navigate('/utilisateurs')
+        navigate('/categories')
       })
       .catch(err => setIsDisabled(false));
     }
@@ -27,7 +27,7 @@ export function UtilisateurEditView(props) {
     useEffect(() => {
       setIsDisabled(true);
 
-      useUtilisateur.getUtilisateur(utilisateurId, abortController.signal)
+      useCategorie.getCategorie(categorieId, abortController.signal)
       .then(() => setIsDisabled(false))
       .catch(err => setIsDisabled(false));
     
@@ -38,12 +38,12 @@ export function UtilisateurEditView(props) {
     
     return (
         <>
-            <h2>Modifier un utilisateur</h2>
+            <h2>Creer une categorie</h2>
             <div className="row">
               <div className="col-12 col-lg-6">
                 <div className="card">
                     <div className="card-body">
-                        <Components.UtilisateurForm useUtilisateur={useUtilisateur}
+                        <Components.CategorieForm useCategorie={useCategorie}
                         isDisabled={isDisabled} handleFormSubmit={handleFormSubmit}/>
                     </div>
                 </div>

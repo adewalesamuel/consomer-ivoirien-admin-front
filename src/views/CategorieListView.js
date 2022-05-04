@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Components } from "../components";
 import { Hooks } from "../hooks";
 import { Services } from "../services";
+import { Api } from "../services/Api";
 
 export function CategorieListView(props) {
     const abortController = new AbortController();
@@ -12,7 +13,7 @@ export function CategorieListView(props) {
 
     const [categories, setCategories] = useState([]);
     
-    const tableHead = ['id', 'nom', 'description'];
+    const tableHead = ['id', 'image', 'nom', 'description'];
     const tableActions = ['edit', 'delete'];
 
     const findCategorieIndex = data => {
@@ -39,7 +40,16 @@ export function CategorieListView(props) {
     useEffect(() => {
         Services.CategorieService.getAll(abortController.signal)
         .then(response => {
-            setCategories(response.categories);
+            const categoriesCopy = response.categories.map((categorie, index) => {
+                return {
+                    id: categorie.id,
+                    image: categorie.img_url ? <img src={`${Api.URL}/${categorie.img_url}`}/> : "",
+                    nom: categorie.nom,
+                    decription: categorie.decription,
+                };
+            });
+
+            setCategories(categoriesCopy);
         });
       return () => {
         // abortController.abort();

@@ -5,6 +5,7 @@ import { UtilisateurCreateView } from "./UtilisateursCreateView";
 import { UtilisateurListView } from "./UtilisateursListView";
 import { UtilisateurEditView } from "./UtilisateursEditView";
 import { CategorieCreateView } from "./CategorieCreateView";
+import { CategorieEditView } from "./CategorieEditView";
 import { CategorieListView } from "./CategorieListView";
 import { PostCreateView } from "./PostCreateView";
 import { PostListView } from "./PostListView";
@@ -22,6 +23,7 @@ export const Views = {
     UtilisateurListView,
     UtilisateurEditView,
     CategorieCreateView,
+    CategorieEditView,
     CategorieListView,
     PostCreateView,
     PostListView,

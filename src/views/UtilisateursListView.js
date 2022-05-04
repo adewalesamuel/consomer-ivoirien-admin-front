@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Components } from "../components";
 import { Hooks } from "../hooks";
 import { Services } from "../services";
+import { Api } from "../services/Api";
 
 export function UtilisateurListView(props) {
     const abortController = new AbortController();
@@ -12,7 +13,7 @@ export function UtilisateurListView(props) {
 
     const [utilisateurs, setUtilisateurs] = useState([]);
     
-    const tableHead = ['id', 'nom_prenoms', 'email', 'telephone', 'status'];
+    const tableHead = ['id', 'image', 'nom_prenoms', 'email', 'telephone', 'status'];
     const tableActions = ['edit', 'delete'];
 
     const findUtilisateurIndex = data => {
@@ -39,7 +40,19 @@ export function UtilisateurListView(props) {
     useEffect(() => {
         Services.UtilisateurService.getAll(abortController.signal)
         .then(response => {
-            setUtilisateurs(response.utilisateurs);
+            const utilisateursCopy = response.utilisateurs.map((utilisateur, index) => {
+                return {
+                    id: utilisateur.id,
+                    image: utilisateur.img_url ? <img src={`${Api.URL}/${utilisateur.img_url}`}/> : "",
+                    nom_prenoms: utilisateur.nom_prenoms,
+                    email: utilisateur.email,
+                    telephone: utilisateur.telephone,
+                    status: utilisateur.status,
+
+                };
+            });
+            
+            setUtilisateurs(utilisateursCopy);
         });
       return () => {
         // abortController.abort();

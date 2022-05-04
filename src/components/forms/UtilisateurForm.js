@@ -7,9 +7,9 @@ export function UtilisateurForm(props) {
             <div className='row'>
                 <div className='col-12'>
                     <div className='form-group'>
-                        <label htmlFor='nom_prenoms'>Nom_prenoms</label>
+                        <label htmlFor='nom_prenoms'>Nom prenoms</label>
                         <input className='form-control' type='text' id='nom_prenoms' name='nom_prenoms' 
-                        placeholder='Nom_prenoms' value={props.useUtilisateur.nom_prenoms ?? ''}
+                        placeholder='Nom prenoms' value={props.useUtilisateur.nom_prenoms ?? ''}
                         disabled={props.isDisabled} 
                         onChange={ e => props.useUtilisateur.setNom_prenoms(e.target.value) ?? null} required/>
                     </div>
@@ -68,13 +68,12 @@ export function UtilisateurForm(props) {
                         onChange={ e => props.useUtilisateur.setTelephone(e.target.value) ?? null} required/>
                     </div>
                 </div>
-				<div className='col-12'>
+                <div className='col-12'>
                     <div className='form-group'>
-                        <label htmlFor='img_url'>Img_url</label>
-                        <input className='form-control' type='text' id='img_url' name='img_url' 
-                        placeholder='Img_url' value={props.useUtilisateur.img_url ?? ''}
-                        disabled={props.isDisabled} 
-                        onChange={ e => props.useUtilisateur.setImg_url(e.target.value) ?? null} required/>
+                        <label htmlFor='img'>Image</label>
+                        <input className='form-control' type='file' id='img' name='img' 
+                        placeholder='img' disabled={props.isDisabled} 
+                        onChange={ e => props.useUtilisateur.setImg(e.target.files[0]) ?? null} required/>
                     </div>
                 </div>
 				<div className='col-12'>

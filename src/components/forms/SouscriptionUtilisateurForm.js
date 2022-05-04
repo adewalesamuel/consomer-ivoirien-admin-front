@@ -7,7 +7,7 @@ export function SouscriptionUtilisateurForm(props) {
             <div className='row'>
                 <div className='col-12'>
                     <div className='form-group'>
-                        <label htmlFor='paiement_id'>Paiement_id</label>
+                        <label htmlFor='paiement_id'>Identifiant de paiement</label>
                         <input className='form-control' type='text' id='paiement_id' name='paiement_id' 
                         placeholder='Paiement_id' value={props.useSouscriptionUtilisateur.paiement_id ?? ''}
                         disabled={props.isDisabled} 
@@ -16,7 +16,7 @@ export function SouscriptionUtilisateurForm(props) {
                 </div>
 				<div className='col-12'>
                     <div className='form-group'>
-                        <label htmlFor='souscription_id'>Souscription_id</label>
+                        <label htmlFor='souscription_id'>Souscription</label>
                         <select className='select2 form-control' id='souscription_id' name='souscription_id' value={props.useSouscriptionUtilisateur.souscription_id ?? ''}
                         disabled={props.isDisabled} 
                         onChange={ e => props.useSouscriptionUtilisateur.setSouscription_id(e.target.value) ?? null} required>
@@ -30,7 +30,7 @@ export function SouscriptionUtilisateurForm(props) {
                 </div>
 				<div className='col-12'>
                     <div className='form-group'>
-                        <label htmlFor='utilisateur_id'>Utilisateur_id</label>
+                        <label htmlFor='utilisateur_id'>Utilisateur</label>
                         <select className='select2 form-control' id='utilisateur_id' name='utilisateur_id' value={props.useSouscriptionUtilisateur.utilisateur_id ?? ''}
                         disabled={props.isDisabled} 
                         onChange={ e => props.useSouscriptionUtilisateur.setUtilisateur_id(e.target.value) ?? null} required>
@@ -63,17 +63,23 @@ export function SouscriptionUtilisateurForm(props) {
 				<div className='col-12'>
                     <div className='form-group'>
                         <label htmlFor='status'>Status</label>
-                        <input className='form-control' type='text' id='status' name='status' 
-                        placeholder='Status' value={props.useSouscriptionUtilisateur.status ?? ''}
-                        disabled={props.isDisabled} 
-                        onChange={ e => props.useSouscriptionUtilisateur.setStatus(e.target.value) ?? null} required/>
+                        <select className='form-control' id='status' name='status' 
+                        value={props.useSouscriptionUtilisateur.status ?? ''} disabled={props.isDisabled} 
+                        onChange={ e => props.useSouscriptionUtilisateur.setStatus(e.target.value) ?? null} required>
+                            <option hidden>Selectionnez le status</option>
+                            {props.useSouscriptionUtilisateur.statuses.map((status, index) => {
+                                return (
+                                    <option value={status} key={index}>{status}</option>
+                                )
+                            })}
+                        </select>
                     </div>
                 </div>
 				<div className='col-12'>
                     <div className='form-group'>
-                        <label htmlFor='mode_paiement'>Mode_paiement</label>
+                        <label htmlFor='mode_paiement'>Mode de paiement</label>
                         <input className='form-control' type='text' id='mode_paiement' name='mode_paiement' 
-                        placeholder='Mode_paiement' value={props.useSouscriptionUtilisateur.mode_paiement ?? ''}
+                        placeholder='Mode de paiement' value={props.useSouscriptionUtilisateur.mode_paiement ?? ''}
                         disabled={props.isDisabled} 
                         onChange={ e => props.useSouscriptionUtilisateur.setMode_paiement(e.target.value) ?? null} required/>
                     </div>

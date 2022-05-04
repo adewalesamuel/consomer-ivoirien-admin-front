@@ -34,11 +34,9 @@ export function CategorieForm(props) {
                 </div>
 				<div className='col-12'>
                     <div className='form-group'>
-                        <label htmlFor='img_url'>Img_url</label>
-                        <input className='form-control' type='text' id='img_url' name='img_url' 
-                        placeholder='Img_url' value={props.useCategorie.img_url ?? ''}
-                        disabled={props.isDisabled} 
-                        onChange={ e => props.useCategorie.setImg_url(e.target.value) ?? null} required/>
+                        <label htmlFor='img_url'>Img</label>
+                        <input className='form-control' type='file' id='img' name='img' disabled={props.isDisabled} 
+                        onChange={ e => props.useCategorie.setImg(e.target.files[0]) ?? null} required/>
                     </div>
                 </div>
 				

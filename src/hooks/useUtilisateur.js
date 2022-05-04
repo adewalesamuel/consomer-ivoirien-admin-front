@@ -12,9 +12,10 @@ export const useUtilisateur = () => {
 	const [telephone, setTelephone] = useState('');
 	const [img_url, setImg_url] = useState('');
 	const [status, setStatus] = useState('');
+	const [img, setImg] = useState('');
+
 	const statuses = ['en-attente', 'valide', 'suspendu'];
 	
-
     const [errors, setErrors] = useState([]);
     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -27,36 +28,34 @@ export const useUtilisateur = () => {
     }
 
     const createUtilisateur = signal => {
-        const payload = {
-            nom_prenoms,
-		email,
-		password,
-		adresse,
-		ville,
-		pays,
-		telephone,
-		img_url,
-		status,
-		
-        };
+		const formData = new FormData();
 
-        return Services.UtilisateurService.create(JSON.stringify(payload), signal);
+        formData.append("nom_prenoms", nom_prenoms);
+        formData.append("email", email);
+        formData.append("password", password);
+        formData.append("adresse", adresse);
+        formData.append("ville", ville);
+        formData.append("pays", pays);
+        formData.append("telephone", telephone);
+        formData.append("img", img);
+        formData.append("status", status);
+
+        return Services.UtilisateurService.create(formData, signal);
     }
     const updateUtilisateur = (utilisateurId, signal) => {
-        const payload = {
-            nom_prenoms,
-		email,
-		password,
-		adresse,
-		ville,
-		pays,
-		telephone,
-		img_url,
-		status,
-		
-        };
+		const formData = new FormData();
 
-        return Services.UtilisateurService.update(utilisateurId, JSON.stringify(payload), signal);
+        formData.append("nom_prenoms", nom_prenoms);
+        formData.append("email", email);
+        formData.append("password", password);
+        formData.append("adresse", adresse);
+        formData.append("ville", ville);
+        formData.append("pays", pays);
+        formData.append("telephone", telephone);
+        formData.append("img", img);
+        formData.append("status", status);
+
+        return Services.UtilisateurService.update(utilisateurId, formData, signal);
     }
     const deleteUtilisateur = (utilisateurId, signal) => {
         return Services.UtilisateurService.destroy(utilisateurId, signal);
@@ -98,6 +97,7 @@ export const useUtilisateur = () => {
 		pays,
 		telephone,
 		img_url,
+		img,
 		status,
 		statuses,
 		
@@ -111,6 +111,7 @@ export const useUtilisateur = () => {
 		setPays,
 		setTelephone,
 		setImg_url,
+		setImg,
 		setStatus,
 		
         setId,

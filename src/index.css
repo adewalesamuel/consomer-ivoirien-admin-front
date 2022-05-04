@@ -26,3 +26,10 @@ ul {
   cursor: pointer;
   font-size: 16px;
 }
+
+table img {
+  max-width: 100%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}

@@ -11,6 +11,7 @@ import { PostCreateView } from "./PostCreateView";
 import { PostListView } from "./PostListView";
 import { PostEditView } from "./PostEditView";
 import { SouscriptionCreateView } from "./SouscriptionCreateView";
+import { SouscriptionEditView } from "./SouscriptionEditView"
 import { SouscriptionListView } from "./SouscriptionListView";
 import { SouscriptionUtilisateurCreateView } from "./SouscriptionUtilisateurCreateView";
 import { SouscriptionUtilisateurListView } from "./SouscriptionUtilisateurListView";
@@ -29,6 +30,7 @@ export const Views = {
     PostListView,
     SouscriptionCreateView,
     SouscriptionListView,
+    SouscriptionEditView,
     SouscriptionUtilisateurCreateView,
     SouscriptionUtilisateurListView,
     SouscriptionUtilisateurEditView,

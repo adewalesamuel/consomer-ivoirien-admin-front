@@ -45,7 +45,7 @@ export function CategorieListView(props) {
                     id: categorie.id,
                     image: categorie.img_url ? <img src={`${Api.URL}/${categorie.img_url}`}/> : "",
                     nom: categorie.nom,
-                    decription: categorie.decription,
+                    description: categorie.description,
                 };
             });
 

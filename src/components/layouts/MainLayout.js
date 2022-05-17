@@ -34,6 +34,7 @@ export function MainLayout(props) {
                                 <Route exact path='posts/:id/modifier' element={<Views.PostEditView />} />
                                 <Route exact path='posts/creer' element={<Views.PostCreateView />} />
                                 <Route exact path='posts' element={<Views.PostListView />} />
+                                <Route exact path='souscriptions/:id/modifier' element={<Views.SouscriptionEditView />} />
                                 <Route exact path='souscriptions/creer' element={<Views.SouscriptionCreateView />} />
                                 <Route exact path='souscriptions' element={<Views.SouscriptionListView />} />
                                 <Route exact path='souscription_utilisateurs/:id/modifier' element={<Views.SouscriptionUtilisateurEditView />} />

@@ -7,7 +7,7 @@ export function AdministrateurForm(props) {
             <div className='row'>
                 <div className='col-12'>
                     <div className='form-group'>
-                        <label htmlFor='nom_prenoms'>Nom_prenoms</label>
+                        <label htmlFor='nom_prenoms'>Nom prenoms</label>
                         <input className='form-control' type='text' id='nom_prenoms' name='nom_prenoms' 
                         placeholder='Nom_prenoms' value={props.useAdministrateur.nom_prenoms ?? ''}
                         disabled={props.isDisabled} 

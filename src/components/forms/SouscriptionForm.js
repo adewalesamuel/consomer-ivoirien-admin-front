@@ -25,16 +25,15 @@ export function SouscriptionForm(props) {
                 </div>
 				<div className='col-12'>
                     <div className='form-group'>
-                        <label htmlFor='img_urls'>Img_urls</label>
-                        <input className='form-control' type='text' id='img_urls' name='img_urls' 
-                        placeholder='Img_urls' value={props.useSouscription.img_urls ?? ''}
-                        disabled={props.isDisabled} 
-                        onChange={ e => props.useSouscription.setImg_urls(e.target.value) ?? null} required/>
+                        <label htmlFor='img'>Img</label>
+                        <input className='form-control' type='text' id='img' name='img' 
+                        value={props.useSouscription.img ?? ''} disabled={props.isDisabled} 
+                        onChange={ e => props.useSouscription.setImg_urls(e.target.files[0]) ?? null} required/>
                     </div>
                 </div>
 				<div className='col-12'>
                     <div className='form-group'>
-                        <label htmlFor='periode'>Periode</label>
+                        <label htmlFor='periode'>Periode</label> <small>(mois)</small>
                         <input className='form-control' type='number' id='periode' name='periode' 
                         placeholder='Periode' value={props.useSouscription.periode ?? ''}
                         disabled={props.isDisabled} 
@@ -50,13 +49,22 @@ export function SouscriptionForm(props) {
                         onChange={ e => props.useSouscription.setPrix(e.target.value) ?? null} required/>
                     </div>
                 </div>
-				<div className='col-12'>
+                <div className='col-12'>
                     <div className='form-group'>
-                        <label htmlFor='attributs'>Attributs</label>
-                        <input className='form-control' type='text' id='attributs' name='attributs' 
-                        placeholder='Attributs' value={props.useSouscription.attributs ?? ''}
+                        <label htmlFor='post_par_mois'>Nombre de publications par mois</label>
+                        <input className='form-control' type='number' id='post_par_mois' name='post_par_mois' 
+                        placeholder='Nombre de publications par mois' value={props.useSouscription.post_par_mois ?? ''}
                         disabled={props.isDisabled} 
-                        onChange={ e => props.useSouscription.setAttributs(e.target.value) ?? null} required/>
+                        onChange={ e => props.useSouscription.setPost_par_moisAttributs(e.target.value) ?? null} required/>
+                    </div>
+                </div>
+                <div className='col-12'>
+                    <div className='form-group'>
+                        <label htmlFor='img_par_post'>Nombre d'images par publications</label>
+                        <input className='form-control' type='number' id='img_par_post' name='img_par_post' 
+                        placeholder="Nombre d'images par publications" value={props.useSouscription.img_par_post ?? ''}
+                        disabled={props.isDisabled} 
+                        onChange={ e => props.useSouscription.setImg_par_postAttributs(e.target.value) ?? null} required/>
                     </div>
                 </div>
 				

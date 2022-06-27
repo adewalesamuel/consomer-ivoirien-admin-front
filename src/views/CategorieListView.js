@@ -38,23 +38,21 @@ export function CategorieListView(props) {
     }
     
     useEffect(() => {
-        Services.CategorieService.getAll(abortController.signal)
-        .then(response => {
-            const categoriesCopy = response.categories.map((categorie, index) => {
-                return {
-                    id: categorie.id,
-                    image: categorie.img_url ? <img src={`${Api.URL}/${categorie.img_url}`}/> : "",
-                    nom: categorie.nom,
-                    description: categorie.description,
-                };
-            });
-
-            setCategories(categoriesCopy);
+        const categoriesCopy = useCategorie.categories.map((categorie, index) => {
+            return {
+                id: categorie.id,
+                image: categorie.img_url ? <img src={`${Api.URL}/${categorie.img_url}`}/> : "",
+                nom: categorie.nom,
+                description: categorie.description,
+                children: categorie.sub_categories
+            };
         });
+
+        setCategories(categoriesCopy);
       return () => {
         // abortController.abort();
       }
-    }, []);
+    },[useCategorie.categories.length]);
 
     return (
         <>

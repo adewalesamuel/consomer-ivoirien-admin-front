@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Services } from '../services';
 
 export const useCategorie = () => {
@@ -6,9 +6,12 @@ export const useCategorie = () => {
 	const [nom, setNom] = useState('');
 	const [slug, setSlug] = useState('');
 	const [description, setDescription] = useState('');
+    const [parent_category_id, setParent_category_id] = useState('');
 	const [img_url, setImg_url] = useState('');
     const [img, setImg] = useState('');
 
+    const [categories, setCategories] = useState([]);
+	
     const [errors, setErrors] = useState([]);
     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -19,13 +22,13 @@ export const useCategorie = () => {
             setIsDisabled(false);
         });
     }
-
     const createCategorie = signal => {
         const formData = new FormData();
 
         formData.append("nom", nom);
         formData.append("slug", slug);
         formData.append("description", description);
+        formData.append("parent_category_id", parent_category_id);
         formData.append("img", img);
 
         return Services.CategorieService.create(formData, signal);
@@ -36,6 +39,7 @@ export const useCategorie = () => {
         formData.append("nom", nom);
         formData.append("slug", slug);
         formData.append("description", description);
+        formData.append("parent_category_id", parent_category_id);
         formData.append("img", img);
 
         return Services.CategorieService.update(categorieId, formData, signal);
@@ -49,6 +53,7 @@ export const useCategorie = () => {
 		setSlug(categorie.slug ?? '');
 		setDescription(categorie.description ?? '');
 		setImg_url(categorie.img_url ?? '');
+        setParent_category_id(categorie.parent_category_id ?? '');
 		
     }
     const emptyCategorie = () => {
@@ -57,9 +62,25 @@ export const useCategorie = () => {
 		setSlug('');
 		setDescription('');
 		setImg_url('');
-        setImg('');
+		setImg(null);
+        setParent_category_id('');
 		
     }
+
+    useEffect(() => {
+        const abortController = new AbortController();
+
+        Services.CategorieService.getAll(abortController.signal)
+        .then(response => {
+            setCategories(response.categories);
+        })
+        .catch(err => console.log(err));
+    
+      return () => {
+        
+      }
+    }, [])
+
 
     return {
         id,
@@ -67,7 +88,8 @@ export const useCategorie = () => {
 		slug,
 		description,
 		img_url,
-        img,
+        categories,
+        parent_category_id,
 		
         errors,
         isDisabled,
@@ -76,6 +98,7 @@ export const useCategorie = () => {
 		setDescription,
 		setImg_url,
         setImg,
+        setParent_category_id,
 		
         setId,
         setErrors,

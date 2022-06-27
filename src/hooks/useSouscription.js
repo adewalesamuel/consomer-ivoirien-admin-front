@@ -5,32 +5,14 @@ export const useSouscription = () => {
     const [id, setId] = useState('');
 	const [titre, setTitre] = useState('');
 	const [description, setDescription] = useState('');
-	const [img_urls, setImg_urls] = useState('');
+	const [img, setImg] = useState('');
+	const [img_url, setImg_Url] = useState('');
 	const [periode, setPeriode] = useState('');
 	const [prix, setPrix] = useState('');
 	const [attributs, setAttributs] = useState('');
-    const [post_par_mois, setPost_par_mois] = useState('');
-    const [img_par_post, setImg_par_post] = useState('');
 	
     const [errors, setErrors] = useState([]);
     const [isDisabled, setIsDisabled] = useState(false);
-
-    const setPost_par_moisAttributs = post_par_mois => {
-		setPost_par_mois(post_par_mois);
-		
-		let attributsObj = attributs ? JSON.parse(attributs) : {};	
-		attributsObj['post_par_mois'] = post_par_mois;
-		
-		setAttributs(JSON.stringify(attributsObj));
-	}
-    const setImg_par_postAttributs = img_par_post => {
-		setImg_par_post(img_par_post);
-		
-		let attributsObj = attributs ? JSON.parse(attributs) : {};	
-		attributsObj['img_par_post'] = img_par_post;
-		
-		setAttributs(JSON.stringify(attributsObj));
-	}
 
     const getSouscription = (souscriptionId, signal) => {        
         return Services.SouscriptionService.getById(souscriptionId, signal)
@@ -41,30 +23,28 @@ export const useSouscription = () => {
     }
 
     const createSouscription = signal => {
-        const payload = {
-            titre,
-		description,
-		img_urls,
-		periode,
-		prix,
-		attributs,
-		
-        };
+        const formData = new FormData();
 
-        return Services.SouscriptionService.create(JSON.stringify(payload), signal);
+        formData.append("titre", titre);
+        formData.append("description", description);
+        formData.append("img", img);
+        formData.append("periode", periode);
+        formData.append("prix", prix);
+        formData.append("attributs", attributs);
+
+        return Services.SouscriptionService.create(formData, signal);
     }
     const updateSouscription = (souscriptionId, signal) => {
-        const payload = {
-            titre,
-		description,
-		img_urls,
-		periode,
-		prix,
-		attributs,
-		
-        };
+        const formData = new FormData();
 
-        return Services.SouscriptionService.update(souscriptionId, JSON.stringify(payload), signal);
+        formData.append("titre", titre);
+        formData.append("description", description);
+        formData.append("img", img);
+        formData.append("periode", periode);
+        formData.append("prix", prix);
+        formData.append("attributs", attributs);
+
+        return Services.SouscriptionService.update(souscriptionId, formData, signal);
     }
     const deleteSouscription = (souscriptionId, signal) => {
         return Services.SouscriptionService.destroy(souscriptionId, signal);
@@ -73,19 +53,17 @@ export const useSouscription = () => {
         setId(souscription.id);
         setTitre(souscription.titre ?? '');
 		setDescription(souscription.description ?? '');
-		setImg_urls(souscription.img_urls ?? '');
+		setImg(souscription.img ?? '');
 		setPeriode(souscription.periode ?? '');
 		setPrix(souscription.prix ?? '');
-
-        setPost_par_mois(JSON.parse(souscription.attributs) ? JSON.parse(souscription.attributs)['post_par_mois'] : '');
-        setImg_par_post(JSON.parse(souscription.attributs) ? JSON.parse(souscription.attributs)['img_par_post'] : '');
 		setAttributs(souscription.attributs ?? '');
+		
     }
     const emptySouscription = () => {
         setId('');
         setTitre('');
 		setDescription('');
-		setImg_urls('');
+		setImg('');
 		setPeriode('');
 		setPrix('');
 		setAttributs('');
@@ -96,23 +74,21 @@ export const useSouscription = () => {
         id,
         titre,
 		description,
-		img_urls,
+		img,
 		periode,
 		prix,
 		attributs,
-        post_par_mois,
-        img_par_post,
+        img_url,
 		
         errors,
         isDisabled,
         setTitre,
 		setDescription,
-		setImg_urls,
+		setImg,
 		setPeriode,
 		setPrix,
 		setAttributs,
-        setImg_par_postAttributs,
-        setPost_par_moisAttributs,
+        setImg_Url,
 		
         setId,
         setErrors,
